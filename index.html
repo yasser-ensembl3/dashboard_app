@@ -185,9 +185,10 @@
             opacity: 1;
         }
 
-        .app-card.founder { --accent: linear-gradient(90deg, #6366f1, #8b5cf6); }
+        .app-card.datavault { --accent: linear-gradient(90deg, #6366f1, #8b5cf6); }
+        .app-card.media { --accent: linear-gradient(90deg, #ec4899, #f43f5e); }
+        .app-card.stock { --accent: linear-gradient(90deg, #22c55e, #14b8a6); }
         .app-card.tao { --accent: linear-gradient(90deg, #f59e0b, #ef4444); }
-        .app-card.present { --accent: linear-gradient(90deg, #22c55e, #14b8a6); }
 
         .app-icon {
             width: 64px;
@@ -200,9 +201,10 @@
             margin-bottom: 24px;
         }
 
-        .founder .app-icon { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); }
+        .datavault .app-icon { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); }
+        .media .app-icon { background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%); }
+        .stock .app-icon { background: linear-gradient(135deg, #22c55e 0%, #14b8a6 100%); }
         .tao .app-icon { background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); }
-        .present .app-icon { background: linear-gradient(135deg, #22c55e 0%, #14b8a6 100%); }
 
         .app-badge {
             display: inline-block;
@@ -329,7 +331,7 @@
 
             <div class="stats-bar">
                 <div class="stat">
-                    <div class="stat-number">3</div>
+                    <div class="stat-number">4</div>
                     <div class="stat-label">Applications</div>
                 </div>
             </div>
@@ -337,18 +339,56 @@
 
         <section>
             <div class="apps-grid">
-                <!-- Founder MTL -->
-                <div class="app-card founder">
-                    <div class="app-icon">🏙️</div>
-                    <span class="app-badge">Community</span>
-                    <h3>Founder MTL</h3>
-                    <p>Discover and connect with startup founders in Montreal. A curated list of the Montreal entrepreneurial community to facilitate networking and collaborations.</p>
+                <!-- DataVault -->
+                <div class="app-card datavault">
+                    <div class="app-icon">📚</div>
+                    <span class="app-badge">Documentation</span>
+                    <h3>DataVault</h3>
+                    <p>Documentation hub powered by Nextra with Notion integration. Centralized knowledge base for storing and organizing technical documentation and project resources.</p>
                     <div class="app-features">
-                        <span class="feature-tag">Directory</span>
-                        <span class="feature-tag">Networking</span>
-                        <span class="feature-tag">Montreal</span>
+                        <span class="feature-tag">Nextra</span>
+                        <span class="feature-tag">Notion</span>
+                        <span class="feature-tag">Docs</span>
                     </div>
-                    <a href="https://founder-mtl.vercel.app/" target="_blank" class="app-link">
+                    <a href="https://datavault-rust.vercel.app/vault" target="_blank" class="app-link">
+                        Open App
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- ContentVault -->
+                <div class="app-card media">
+                    <div class="app-icon">📖</div>
+                    <span class="app-badge">Content</span>
+                    <h3>ContentVault</h3>
+                    <p>Lightweight read-only frontend for consuming content from Notion. Your daily entry point for articles, videos, podcasts, and resources to read or watch next.</p>
+                    <div class="app-features">
+                        <span class="feature-tag">Notion</span>
+                        <span class="feature-tag">Read-only</span>
+                        <span class="feature-tag">Content</span>
+                    </div>
+                    <a href="https://media-minivault.vercel.app/vault" target="_blank" class="app-link">
+                        Open App
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- StockVault -->
+                <div class="app-card stock">
+                    <div class="app-icon">📈</div>
+                    <span class="app-badge">Finance</span>
+                    <h3>StockVault</h3>
+                    <p>Financial insights dashboard for analyzing quarterly reports from public companies. Compare companies, track trends, and chat with AI about financial data.</p>
+                    <div class="app-features">
+                        <span class="feature-tag">Quarterly</span>
+                        <span class="feature-tag">Analysis</span>
+                        <span class="feature-tag">AI Chat</span>
+                    </div>
+                    <a href="https://stock-vault.vercel.app/dashboard" target="_blank" class="app-link">
                         Open App
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -358,35 +398,16 @@
 
                 <!-- Tao Promotion -->
                 <div class="app-card tao">
-                    <div class="app-icon">📖</div>
-                    <span class="app-badge">Book</span>
+                    <div class="app-icon">🎯</div>
+                    <span class="app-badge">Management</span>
                     <h3>Tao Promotion</h3>
-                    <p>Promotion page for the book "Tao of Founders" — an inspiring guide that explores the philosophy and wisdom behind entrepreneurship. Discover timeless principles of success.</p>
+                    <p>Project management dashboard for "Tao of Founders" book. Track metrics, monitor tasks, generate reports, and manage all resources for the book promotion campaign.</p>
                     <div class="app-features">
-                        <span class="feature-tag">Book</span>
-                        <span class="feature-tag">Philosophy</span>
-                        <span class="feature-tag">Inspiration</span>
+                        <span class="feature-tag">Notion</span>
+                        <span class="feature-tag">Drive</span>
+                        <span class="feature-tag">Metrics</span>
                     </div>
-                    <a href="https://tao-promotion.vercel.app/" target="_blank" class="app-link">
-                        Open App
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                        </svg>
-                    </a>
-                </div>
-
-                <!-- Present Agent -->
-                <div class="app-card present">
-                    <div class="app-icon">🎁</div>
-                    <span class="app-badge">AI</span>
-                    <h3>Present Agent</h3>
-                    <p>An intelligent assistant that suggests personalized gifts tailored to each person. Find the perfect gift with custom recommendations based on preferences.</p>
-                    <div class="app-features">
-                        <span class="feature-tag">Artificial Intelligence</span>
-                        <span class="feature-tag">Personalized</span>
-                        <span class="feature-tag">Gifts</span>
-                    </div>
-                    <a href="https://present-agent-nine.vercel.app/" target="_blank" class="app-link">
+                    <a href="https://tao-promotion.vercel.app/dashboard" target="_blank" class="app-link">
                         Open App
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
