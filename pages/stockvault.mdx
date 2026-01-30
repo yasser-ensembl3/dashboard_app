@@ -1,0 +1,84 @@
+# StockVault
+
+import { VaultLink } from '../components'
+import vaultsData from '../data/vaults.json'
+
+export const vault = vaultsData.vaults.stockvault
+
+<VaultLink url={vault.url} name="StockVault" />
+
+## Key Metrics
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', margin: '1.5rem 0' }}>
+  <div style={{ background: '#047857', padding: '1.5rem', borderRadius: '12px', textAlign: 'center' }}>
+    <div style={{ fontSize: '2.5rem', fontWeight: 'bold', color: 'white' }}>{vault.metrics.stockCompanies}</div>
+    <div style={{ fontSize: '0.75rem', color: '#6ee7b7', marginTop: '0.5rem' }}>STOCK COMPANIES</div>
+  </div>
+  <div style={{ background: '#7c3aed', padding: '1.5rem', borderRadius: '12px', textAlign: 'center' }}>
+    <div style={{ fontSize: '2.5rem', fontWeight: 'bold', color: 'white' }}>{vault.metrics.investmentCompanies}</div>
+    <div style={{ fontSize: '0.75rem', color: '#c4b5fd', marginTop: '0.5rem' }}>INVESTMENT REPORTS</div>
+  </div>
+  <div style={{ background: '#1e40af', padding: '1.5rem', borderRadius: '12px', textAlign: 'center' }}>
+    <div style={{ fontSize: '2.5rem', fontWeight: 'bold', color: 'white' }}>{vault.metrics.quarters}</div>
+    <div style={{ fontSize: '0.75rem', color: '#93c5fd', marginTop: '0.5rem' }}>QUARTERS</div>
+  </div>
+</div>
+
+## Stock Companies (Quarterly Financials)
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.5rem', marginTop: '1rem' }}>
+  {vault.stockCompanies.map((company, i) => {
+    const colors = ['#dc2626', '#2563eb', '#059669', '#7c3aed', '#d97706', '#be185d', '#0891b2', '#4f46e5', '#0d9488', '#ea580c', '#4338ca', '#c026d3']
+    return (
+      <div key={company} style={{ padding: '0.5rem 0.75rem', background: '#1f2937', borderLeft: `3px solid ${colors[i % colors.length]}`, borderRadius: '0 6px 6px 0' }}>
+        <span style={{ color: 'white', fontWeight: '500', fontSize: '0.8rem' }}>{company}</span>
+      </div>
+    )
+  })}
+</div>
+
+## Investment Reports (Portfolio Companies)
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem', marginTop: '1rem' }}>
+  {vault.investmentCompanies.map((company, i) => {
+    const colors = ['#9333ea', '#6366f1', '#8b5cf6', '#a855f7', '#7c3aed', '#6d28d9', '#5b21b6', '#4c1d95']
+    return (
+      <div key={company} style={{ padding: '0.5rem 0.75rem', background: '#1f2937', borderLeft: `3px solid ${colors[i % colors.length]}`, borderRadius: '0 6px 6px 0' }}>
+        <span style={{ color: 'white', fontWeight: '500', fontSize: '0.8rem' }}>{company}</span>
+      </div>
+    )
+  })}
+</div>
+
+## Data Available
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem', marginTop: '1.5rem' }}>
+  <div style={{ padding: '1rem', background: '#1f2937', borderRadius: '8px', borderTop: '3px solid #047857' }}>
+    <div style={{ color: '#6ee7b7', fontWeight: '600', marginBottom: '0.5rem' }}>Stock Companies</div>
+    <ul style={{ color: 'white', marginLeft: '1.25rem', fontSize: '0.875rem' }}>
+      <li>Quarterly financial reports</li>
+      <li>Strategic analysis</li>
+      <li>Key metrics comparison</li>
+      <li>Multi-quarter trends</li>
+    </ul>
+  </div>
+  <div style={{ padding: '1rem', background: '#1f2937', borderRadius: '8px', borderTop: '3px solid #7c3aed' }}>
+    <div style={{ color: '#c4b5fd', fontWeight: '600', marginBottom: '0.5rem' }}>Investment Reports</div>
+    <ul style={{ color: 'white', marginLeft: '1.25rem', fontSize: '0.875rem' }}>
+      <li>Company overview</li>
+      <li>Key milestones</li>
+      <li>Product updates</li>
+      <li>Investment signals</li>
+    </ul>
+  </div>
+</div>
+
+---
+
+<div style={{ marginTop: '2rem' }}>
+  <VaultLink url={vault.url} name="Open StockVault" />
+</div>
+
+<div style={{ marginTop: '1rem', color: '#9ca3af', fontSize: '0.875rem' }}>
+  Last updated: January 30, 2026
+</div>

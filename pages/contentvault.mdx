@@ -1,0 +1,57 @@
+# ContentVault
+
+import { VaultLink } from '../components'
+import vaultsData from '../data/vaults.json'
+
+export const vault = vaultsData.vaults.contentvault
+
+<VaultLink url={vault.url} name="ContentVault" />
+
+## Key Metrics
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', margin: '1.5rem 0' }}>
+  <div style={{ background: '#1e40af', padding: '1.5rem', borderRadius: '12px', textAlign: 'center' }}>
+    <div style={{ fontSize: '2.5rem', fontWeight: 'bold', color: 'white' }}>{vault.metrics.totalItems}</div>
+    <div style={{ fontSize: '0.75rem', color: '#93c5fd', marginTop: '0.5rem' }}>TOTAL ITEMS</div>
+  </div>
+  <div style={{ background: '#dc2626', padding: '1.5rem', borderRadius: '12px', textAlign: 'center' }}>
+    <div style={{ fontSize: '2.5rem', fontWeight: 'bold', color: 'white' }}>{vault.metrics.toRead}</div>
+    <div style={{ fontSize: '0.75rem', color: '#fecaca', marginTop: '0.5rem' }}>TO READ</div>
+  </div>
+  <div style={{ background: '#7c3aed', padding: '1.5rem', borderRadius: '12px', textAlign: 'center' }}>
+    <div style={{ fontSize: '2.5rem', fontWeight: 'bold', color: 'white' }}>{vault.metrics.inbox}</div>
+    <div style={{ fontSize: '0.75rem', color: '#c4b5fd', marginTop: '0.5rem' }}>INBOX</div>
+  </div>
+</div>
+
+## Content by Source
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem', marginTop: '1rem' }}>
+  {vault.bySource.map(item => (
+    <div key={item.source} style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem', background: '#1f2937', borderRadius: '8px' }}>
+      <span style={{ color: 'white' }}>{item.source}</span>
+      <span style={{ color: '#60a5fa', fontWeight: 'bold' }}>{item.count}</span>
+    </div>
+  ))}
+</div>
+
+## Content by Type
+
+<div style={{ marginTop: '1.5rem' }}>
+  {vault.byType.map(item => (
+    <div key={item.type} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem', background: '#1f2937', borderRadius: '8px', marginBottom: '0.5rem' }}>
+      <span style={{ color: 'white' }}>{item.type}</span>
+      <span style={{ padding: '0.25rem 0.75rem', background: '#047857', color: 'white', borderRadius: '999px', fontSize: '0.875rem' }}>{item.count}</span>
+    </div>
+  ))}
+</div>
+
+---
+
+<div style={{ marginTop: '2rem' }}>
+  <VaultLink url={vault.url} name="Open ContentVault" />
+</div>
+
+<div style={{ marginTop: '1rem', color: '#9ca3af', fontSize: '0.875rem' }}>
+  Last updated: January 30, 2026
+</div>

@@ -1,0 +1,118 @@
+{
+  "lastUpdated": "2026-01-30T17:00:00Z",
+  "vaults": {
+    "datavault": {
+      "name": "DataVault",
+      "url": "https://datavault-rust.vercel.app/vault",
+      "description": "Research results database - currently empty, ready for new entries.",
+      "icon": "📚",
+      "metrics": {
+        "totalItems": 0
+      },
+      "status": "empty"
+    },
+    "contentvault": {
+      "name": "ContentVault",
+      "url": "https://media-minivault.vercel.app/vault",
+      "description": "Content consumption tracker - podcasts, articles, videos.",
+      "icon": "🎬",
+      "metrics": {
+        "totalItems": 19,
+        "toRead": 18,
+        "inbox": 1
+      },
+      "bySource": [
+        { "source": "Apple Podcasts", "count": 7 },
+        { "source": "Blog", "count": 6 },
+        { "source": "YouTube", "count": 5 },
+        { "source": "ArXiv", "count": 1 }
+      ],
+      "byType": [
+        { "type": "Audio Summary", "count": 18 },
+        { "type": "Paper", "count": 1 }
+      ]
+    },
+    "stockvault": {
+      "name": "StockVault",
+      "url": "https://stock-vault.vercel.app/dashboard",
+      "description": "Quarterly financial analysis and investment reports.",
+      "icon": "📊",
+      "metrics": {
+        "stockCompanies": 12,
+        "investmentCompanies": 21,
+        "quarters": 3
+      },
+      "stockCompanies": [
+        "Amazon",
+        "Circle",
+        "Coinbase",
+        "Constellation Software",
+        "Ebay",
+        "Etsy",
+        "FIGS",
+        "LVMH",
+        "nVidia",
+        "Shopify",
+        "Wayfair",
+        "Yeti"
+      ],
+      "investmentCompanies": [
+        "Abra Promotions",
+        "Builder Io",
+        "Ceremonia",
+        "Constructor",
+        "Daily Blends",
+        "Design Stripe",
+        "Helika",
+        "Hookdeck",
+        "Immune Biosolution",
+        "Kotn",
+        "Nolk",
+        "Pivohub",
+        "Ripple AI",
+        "Screenloop",
+        "Shakepay",
+        "Three Ships",
+        "Vasco",
+        "Waverly",
+        "Wavyy",
+        "Wonderment",
+        "Zeffy"
+      ]
+    },
+    "tao-promotion": {
+      "name": "Tao Promotion",
+      "url": "https://tao-promotion.vercel.app/dashboard",
+      "description": "Sales tracking and promotion for the Tao of Founders book.",
+      "icon": "🎯",
+      "metrics": {
+        "unfulfilled": 5,
+        "amazonSales": 118,
+        "amazonReviews": 97,
+        "shopifySales": "$292"
+      },
+      "unfulfilledOrders": [
+        { "id": "TAO1056", "name": "David Lethbridge", "total": "$10.46", "date": "Jan 7 2026" },
+        { "id": "TAO1053", "name": "Victor Daga", "total": "$10.49", "date": "Oct 2 2025" },
+        { "id": "TAO1047", "name": "建名 陣", "total": "$10", "date": "Jun 24 2025" },
+        { "id": "TAO1048", "name": "Dragos Craciun", "total": "$10.35", "date": "Jun 25 2025" }
+      ],
+      "pendingTasks": [
+        { "title": "Marketing plan + video Tao FR", "priority": "High", "due": "2025-12-14" }
+      ],
+      "recentReviews": [
+        "⭐⭐⭐⭐⭐ Great book",
+        "⭐⭐⭐⭐⭐ Toute une référence",
+        "⭐⭐⭐⭐⭐ Tao - great insights",
+        "⭐⭐⭐⭐⭐ Truly Inspiring Book",
+        "⭐⭐⭐⭐⭐ Great gift for startup founders"
+      ],
+      "goals": {
+        "amazonSales": 118,
+        "amazonComReviews": 53,
+        "amazonCaReviews": 44,
+        "subscribers": 5288
+      }
+    }
+  }
+}

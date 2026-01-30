@@ -1,0 +1,89 @@
+# MiniVault Dashboard
+
+import { VaultCard } from '../components'
+import vaultsData from '../data/vaults.json'
+
+export const tao = vaultsData.vaults['tao-promotion']
+
+## Action Required
+
+<div style={{ background: '#dc2626', borderRadius: '12px', padding: '1.5rem', marginBottom: '2rem' }}>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+    <span style={{ fontSize: '1.5rem' }}>⚠️</span>
+    <strong style={{ color: 'white', fontSize: '1.25rem' }}>{tao.metrics.unfulfilled} Unfulfilled Orders</strong>
+  </div>
+  <div style={{ display: 'grid', gap: '0.5rem' }}>
+    {tao.unfulfilledOrders.slice(0, 3).map(order => (
+      <div key={order.id} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.75rem', background: 'rgba(0,0,0,0.2)', borderRadius: '6px' }}>
+        <span style={{ color: 'white' }}><strong>#{order.id}</strong> - {order.name}</span>
+        <span style={{ color: '#86efac', fontWeight: '600' }}>{order.total}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+## Your Vaults
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginTop: '1rem' }}>
+  {Object.entries(vaultsData.vaults).map(([key, vault]) => (
+    <VaultCard
+      key={key}
+      name={vault.name}
+      description={vault.description}
+      url={vault.url}
+      metrics={vault.metrics}
+      icon={vault.icon}
+    />
+  ))}
+</div>
+
+## Tao Promotion Quick Stats
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', marginTop: '1.5rem' }}>
+  <div style={{ textAlign: 'center', padding: '1rem', background: '#1e40af', borderRadius: '8px' }}>
+    <div style={{ fontSize: '1.75rem', fontWeight: 'bold', color: 'white' }}>{tao.goals.amazonSales}</div>
+    <div style={{ fontSize: '0.75rem', color: '#93c5fd' }}>Amazon Sales</div>
+  </div>
+  <div style={{ textAlign: 'center', padding: '1rem', background: '#047857', borderRadius: '8px' }}>
+    <div style={{ fontSize: '1.75rem', fontWeight: 'bold', color: 'white' }}>{tao.goals.amazonComReviews + tao.goals.amazonCaReviews}</div>
+    <div style={{ fontSize: '0.75rem', color: '#6ee7b7' }}>Amazon Reviews</div>
+  </div>
+  <div style={{ textAlign: 'center', padding: '1rem', background: '#7c3aed', borderRadius: '8px' }}>
+    <div style={{ fontSize: '1.75rem', fontWeight: 'bold', color: 'white' }}>5,288</div>
+    <div style={{ fontSize: '0.75rem', color: '#c4b5fd' }}>Subscribers</div>
+  </div>
+  <div style={{ textAlign: 'center', padding: '1rem', background: '#be185d', borderRadius: '8px' }}>
+    <div style={{ fontSize: '1.75rem', fontWeight: 'bold', color: 'white' }}>{tao.metrics.shopifySales}</div>
+    <div style={{ fontSize: '0.75rem', color: '#f9a8d4' }}>Shopify Revenue</div>
+  </div>
+</div>
+
+## Pending Tasks
+
+<div style={{ marginTop: '1.5rem' }}>
+  {tao.pendingTasks.map(task => (
+    <div key={task.title} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem', background: '#7c2d12', borderRadius: '8px', marginBottom: '0.5rem' }}>
+      <div style={{ color: 'white' }}>
+        <strong>{task.title}</strong>
+        <span style={{ marginLeft: '0.5rem', padding: '0.25rem 0.5rem', background: '#dc2626', color: 'white', borderRadius: '4px', fontSize: '0.75rem' }}>{task.priority}</span>
+      </div>
+      <div style={{ color: '#fdba74' }}>Due: {task.due}</div>
+    </div>
+  ))}
+</div>
+
+## Recent Reviews
+
+<div style={{ marginTop: '1.5rem', display: 'grid', gap: '0.5rem' }}>
+  {tao.recentReviews.slice(0, 3).map((review, i) => (
+    <div key={i} style={{ padding: '0.75rem 1rem', background: '#14532d', borderLeft: '3px solid #22c55e', borderRadius: '0 8px 8px 0', color: 'white' }}>
+      {review}
+    </div>
+  ))}
+</div>
+
+---
+
+<div style={{ marginTop: '1rem', color: '#9ca3af', fontSize: '0.875rem' }}>
+  Last updated: January 30, 2026
+</div>

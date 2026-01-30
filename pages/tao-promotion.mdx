@@ -1,0 +1,109 @@
+# Tao Promotion
+
+import { VaultLink } from '../components'
+import vaultsData from '../data/vaults.json'
+
+export const vault = vaultsData.vaults['tao-promotion']
+
+<VaultLink url={vault.url} name="Tao Promotion Dashboard" />
+
+## Key Metrics
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', margin: '1.5rem 0' }}>
+  <div style={{ background: '#dc2626', padding: '1.5rem', borderRadius: '12px', textAlign: 'center' }}>
+    <div style={{ fontSize: '2.5rem', fontWeight: 'bold', color: 'white' }}>{vault.metrics.unfulfilled}</div>
+    <div style={{ fontSize: '0.75rem', color: '#fecaca', marginTop: '0.5rem' }}>UNFULFILLED</div>
+  </div>
+  <div style={{ background: '#1e40af', padding: '1.5rem', borderRadius: '12px', textAlign: 'center' }}>
+    <div style={{ fontSize: '2.5rem', fontWeight: 'bold', color: 'white' }}>{vault.metrics.amazonSales}</div>
+    <div style={{ fontSize: '0.75rem', color: '#93c5fd', marginTop: '0.5rem' }}>AMAZON SALES</div>
+  </div>
+  <div style={{ background: '#047857', padding: '1.5rem', borderRadius: '12px', textAlign: 'center' }}>
+    <div style={{ fontSize: '2.5rem', fontWeight: 'bold', color: 'white' }}>{vault.metrics.amazonReviews}</div>
+    <div style={{ fontSize: '0.75rem', color: '#6ee7b7', marginTop: '0.5rem' }}>AMAZON REVIEWS</div>
+  </div>
+  <div style={{ background: '#7c3aed', padding: '1.5rem', borderRadius: '12px', textAlign: 'center' }}>
+    <div style={{ fontSize: '2.5rem', fontWeight: 'bold', color: 'white' }}>{vault.metrics.shopifySales}</div>
+    <div style={{ fontSize: '0.75rem', color: '#c4b5fd', marginTop: '0.5rem' }}>SHOPIFY</div>
+  </div>
+</div>
+
+## Unfulfilled Orders (Action Required)
+
+<div style={{ overflowX: 'auto', marginTop: '1rem', background: '#1f2937', borderRadius: '8px', padding: '1rem' }}>
+  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <thead>
+      <tr style={{ borderBottom: '2px solid #374151' }}>
+        <th style={{ padding: '0.75rem', textAlign: 'left', color: '#9ca3af' }}>Order</th>
+        <th style={{ padding: '0.75rem', textAlign: 'left', color: '#9ca3af' }}>Customer</th>
+        <th style={{ padding: '0.75rem', textAlign: 'right', color: '#9ca3af' }}>Amount</th>
+        <th style={{ padding: '0.75rem', textAlign: 'right', color: '#9ca3af' }}>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {vault.unfulfilledOrders.map((order, i) => (
+        <tr key={order.id} style={{ borderBottom: '1px solid #374151' }}>
+          <td style={{ padding: '0.75rem', fontWeight: '600', color: '#60a5fa' }}>#{order.id}</td>
+          <td style={{ padding: '0.75rem', color: 'white' }}>{order.name}</td>
+          <td style={{ padding: '0.75rem', textAlign: 'right', color: '#34d399', fontWeight: '600' }}>{order.total}</td>
+          <td style={{ padding: '0.75rem', textAlign: 'right', color: '#9ca3af' }}>{order.date}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+## Pending Tasks
+
+<div style={{ marginTop: '1rem' }}>
+  {vault.pendingTasks.map(task => (
+    <div key={task.title} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem', background: '#7c2d12', borderRadius: '8px', marginBottom: '0.5rem' }}>
+      <div style={{ color: 'white' }}>
+        <strong>{task.title}</strong>
+        <span style={{ marginLeft: '0.5rem', padding: '0.25rem 0.5rem', background: '#dc2626', color: 'white', borderRadius: '4px', fontSize: '0.75rem' }}>{task.priority}</span>
+      </div>
+      <div style={{ color: '#fdba74' }}>Due: {task.due}</div>
+    </div>
+  ))}
+</div>
+
+## Goals & KPIs
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem', marginTop: '1rem' }}>
+  <div style={{ padding: '1rem', background: '#1f2937', borderRadius: '8px', borderLeft: '4px solid #3b82f6' }}>
+    <div style={{ color: '#9ca3af', fontSize: '0.875rem' }}>Amazon Sales (Total)</div>
+    <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'white' }}>{vault.goals.amazonSales}</div>
+  </div>
+  <div style={{ padding: '1rem', background: '#1f2937', borderRadius: '8px', borderLeft: '4px solid #8b5cf6' }}>
+    <div style={{ color: '#9ca3af', fontSize: '0.875rem' }}>Substack Subscribers</div>
+    <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'white' }}>5,288</div>
+  </div>
+  <div style={{ padding: '1rem', background: '#1f2937', borderRadius: '8px', borderLeft: '4px solid #10b981' }}>
+    <div style={{ color: '#9ca3af', fontSize: '0.875rem' }}>Amazon.com Reviews</div>
+    <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'white' }}>{vault.goals.amazonComReviews}</div>
+  </div>
+  <div style={{ padding: '1rem', background: '#1f2937', borderRadius: '8px', borderLeft: '4px solid #f59e0b' }}>
+    <div style={{ color: '#9ca3af', fontSize: '0.875rem' }}>Amazon.ca Reviews</div>
+    <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'white' }}>{vault.goals.amazonCaReviews}</div>
+  </div>
+</div>
+
+## Recent Reviews
+
+<div style={{ marginTop: '1rem' }}>
+  {vault.recentReviews.map((review, i) => (
+    <div key={i} style={{ padding: '0.75rem 1rem', background: '#14532d', borderLeft: '3px solid #22c55e', marginBottom: '0.5rem', borderRadius: '0 8px 8px 0', color: 'white' }}>
+      {review}
+    </div>
+  ))}
+</div>
+
+---
+
+<div style={{ marginTop: '2rem' }}>
+  <VaultLink url={vault.url} name="Open Full Dashboard" />
+</div>
+
+<div style={{ marginTop: '1rem', color: '#9ca3af', fontSize: '0.875rem' }}>
+  Last updated: January 30, 2026
+</div>
