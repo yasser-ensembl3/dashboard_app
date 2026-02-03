@@ -5,7 +5,7 @@
       "name": "DataVault",
       "url": "https://datavault-rust.vercel.app/vault",
       "description": "Research results database - currently empty, ready for new entries.",
-      "icon": "📚",
+      "icon": "",
       "metrics": {
         "totalItems": 0
       },
@@ -15,7 +15,7 @@
       "name": "ContentVault",
       "url": "https://media-minivault.vercel.app/vault",
       "description": "Content consumption tracker - podcasts, articles, videos.",
-      "icon": "🎬",
+      "icon": "",
       "metrics": {
         "totalItems": 19,
         "toRead": 18,
@@ -36,7 +36,7 @@
       "name": "StockVault",
       "url": "https://stock-vault.vercel.app/dashboard",
       "description": "Quarterly financial analysis and investment reports.",
-      "icon": "📊",
+      "icon": "",
       "metrics": {
         "stockCompanies": 12,
         "investmentCompanies": 21,
@@ -84,7 +84,7 @@
       "name": "Tao Promotion",
       "url": "https://tao-promotion.vercel.app/dashboard",
       "description": "Sales tracking and promotion for the Tao of Founders book.",
-      "icon": "🎯",
+      "icon": "",
       "metrics": {
         "unfulfilled": 5,
         "amazonSales": 118,
@@ -101,11 +101,11 @@
         { "title": "Marketing plan + video Tao FR", "priority": "High", "due": "2025-12-14" }
       ],
       "recentReviews": [
-        "⭐⭐⭐⭐⭐ Great book",
-        "⭐⭐⭐⭐⭐ Toute une référence",
-        "⭐⭐⭐⭐⭐ Tao - great insights",
-        "⭐⭐⭐⭐⭐ Truly Inspiring Book",
-        "⭐⭐⭐⭐⭐ Great gift for startup founders"
+        "5/5 - Great book",
+        "5/5 - Toute une référence",
+        "5/5 - Tao - great insights",
+        "5/5 - Truly Inspiring Book",
+        "5/5 - Great gift for startup founders"
       ],
       "goals": {
         "amazonSales": 118,

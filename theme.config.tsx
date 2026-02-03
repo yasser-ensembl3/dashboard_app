@@ -21,7 +21,8 @@ const config: DocsThemeConfig = {
       titleTemplate: '%s – MiniVault'
     }
   },
-  primaryHue: 200,
+  primaryHue: 0,
+  primarySaturation: 0,
   sidebar: {
     defaultMenuCollapseLevel: 1,
     toggleButton: true,

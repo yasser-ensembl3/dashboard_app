@@ -32,23 +32,23 @@ export function VaultLink({ url, name }: VaultLinkProps) {
         .vault-link {
           display: inline-flex;
           align-items: center;
-          gap: 0.5rem;
-          padding: 0.625rem 1rem;
-          background: #3b82f6;
-          color: white;
-          border-radius: 8px;
-          font-size: 0.875rem;
+          gap: 0.375rem;
+          padding: 0.375rem 0.625rem;
+          background: #ffffff;
+          color: #111827;
+          border-radius: 6px;
+          font-size: 0.75rem;
           font-weight: 500;
           text-decoration: none;
           transition: all 0.2s ease;
         }
         .vault-link:hover {
-          background: #2563eb;
+          background: #e5e7eb;
           transform: translateY(-1px);
         }
         .vault-link svg {
-          width: 14px;
-          height: 14px;
+          width: 12px;
+          height: 12px;
         }
       `}</style>
     </a>

@@ -64,37 +64,37 @@ export function MetricsDisplay({ metrics }: MetricsDisplayProps) {
       <style jsx>{`
         .metrics-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-          gap: 0.75rem;
-          margin-bottom: 1rem;
+          grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+          gap: 0.375rem;
+          margin-bottom: 0.625rem;
         }
         .metric-item {
           display: flex;
           flex-direction: column;
           align-items: center;
-          padding: 0.75rem;
+          padding: 0.375rem;
           background: #f3f4f6;
-          border-radius: 8px;
+          border-radius: 6px;
           text-align: center;
         }
         :global(.dark) .metric-item {
           background: #374151;
         }
         .metric-value {
-          font-size: 1.5rem;
+          font-size: 1rem;
           font-weight: 700;
-          color: #3b82f6;
+          color: #111827;
           line-height: 1;
         }
         :global(.dark) .metric-value {
-          color: #60a5fa;
+          color: #ffffff;
         }
         .metric-label {
-          font-size: 0.7rem;
+          font-size: 0.625rem;
           color: #6b7280;
           text-transform: uppercase;
-          letter-spacing: 0.05em;
-          margin-top: 0.25rem;
+          letter-spacing: 0.025em;
+          margin-top: 0.125rem;
         }
         :global(.dark) .metric-label {
           color: #9ca3af;

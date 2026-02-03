@@ -14,11 +14,11 @@ interface VaultCardProps {
   icon?: string
 }
 
-export function VaultCard({ name, description, url, metrics, icon = '📦' }: VaultCardProps) {
+export function VaultCard({ name, description, url, metrics, icon = '' }: VaultCardProps) {
   return (
     <div className="vault-card">
       <div className="vault-header">
-        <span className="vault-icon">{icon}</span>
+        {icon && <span className="vault-icon">{icon}</span>}
         <h3 className="vault-name">{name}</h3>
       </div>
       <p className="vault-description">{description}</p>
@@ -27,36 +27,36 @@ export function VaultCard({ name, description, url, metrics, icon = '📦' }: Va
       <style jsx>{`
         .vault-card {
           border: 1px solid #e5e7eb;
-          border-radius: 12px;
-          padding: 1.5rem;
+          border-radius: 8px;
+          padding: 0.875rem;
           background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
           transition: all 0.2s ease;
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
         }
         .vault-card:hover {
-          border-color: #3b82f6;
-          box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
-          transform: translateY(-2px);
+          border-color: #6b7280;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+          transform: translateY(-1px);
         }
         :global(.dark) .vault-card {
           background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
           border-color: #374151;
         }
         :global(.dark) .vault-card:hover {
-          border-color: #60a5fa;
+          border-color: #9ca3af;
         }
         .vault-header {
           display: flex;
           align-items: center;
-          gap: 0.75rem;
-          margin-bottom: 0.75rem;
+          gap: 0.5rem;
+          margin-bottom: 0.375rem;
         }
         .vault-icon {
-          font-size: 1.5rem;
+          font-size: 1rem;
         }
         .vault-name {
           margin: 0;
-          font-size: 1.25rem;
+          font-size: 0.875rem;
           font-weight: 600;
           color: #111827;
         }
@@ -65,9 +65,9 @@ export function VaultCard({ name, description, url, metrics, icon = '📦' }: Va
         }
         .vault-description {
           color: #6b7280;
-          font-size: 0.875rem;
-          margin-bottom: 1rem;
-          line-height: 1.5;
+          font-size: 0.75rem;
+          margin-bottom: 0.625rem;
+          line-height: 1.4;
         }
         :global(.dark) .vault-description {
           color: #9ca3af;

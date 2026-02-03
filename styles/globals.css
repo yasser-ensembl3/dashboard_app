@@ -1,0 +1,155 @@
+/* Compact headings and spacing */
+
+/* Main page title */
+.nextra-content h1 {
+  font-size: 1.25rem !important;
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+  line-height: 1.3 !important;
+}
+
+/* Section headings (h2) */
+.nextra-content h2 {
+  font-size: 0.9375rem !important;
+  margin-top: 0.75rem !important;
+  margin-bottom: 0.375rem !important;
+  padding-bottom: 0.25rem !important;
+  border-bottom-width: 1px !important;
+  line-height: 1.3 !important;
+}
+
+/* Sub-section headings (h3) */
+.nextra-content h3 {
+  font-size: 0.8125rem !important;
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.25rem !important;
+  line-height: 1.3 !important;
+}
+
+/* h4, h5, h6 */
+.nextra-content h4,
+.nextra-content h5,
+.nextra-content h6 {
+  font-size: 0.75rem !important;
+  margin-top: 0.375rem !important;
+  margin-bottom: 0.25rem !important;
+  line-height: 1.3 !important;
+}
+
+/* Reduce paragraph spacing */
+.nextra-content p {
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.5rem !important;
+  font-size: 0.75rem !important;
+  line-height: 1.4 !important;
+}
+
+/* Horizontal rule */
+.nextra-content hr {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Breadcrumb */
+.nextra-breadcrumb {
+  font-size: 0.6875rem !important;
+  margin-bottom: 0.25rem !important;
+}
+
+/* Table of contents */
+.nextra-toc ul li {
+  font-size: 0.6875rem !important;
+  padding: 0.125rem 0 !important;
+}
+
+.nextra-toc > div > div {
+  font-size: 0.6875rem !important;
+}
+
+/* Sidebar */
+.nextra-sidebar-container {
+  font-size: 0.8125rem !important;
+}
+
+/* Reduce overall content max-width for tighter feel */
+.nextra-content {
+  max-width: 100% !important;
+}
+
+/* List spacing */
+.nextra-content ul,
+.nextra-content ol {
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.5rem !important;
+  padding-left: 1rem !important;
+}
+
+.nextra-content li {
+  margin-bottom: 0.125rem !important;
+  font-size: 0.75rem !important;
+}
+
+/* ==================== */
+/* Vault Cards Grid     */
+/* ==================== */
+
+.vault-cards-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* ==================== */
+/* Mobile Responsive    */
+/* ==================== */
+
+@media (max-width: 768px) {
+  /* Smaller headings on mobile */
+  .nextra-content h1 {
+    font-size: 1.125rem !important;
+  }
+
+  .nextra-content h2 {
+    font-size: 0.875rem !important;
+  }
+
+  .nextra-content h3 {
+    font-size: 0.75rem !important;
+  }
+
+  /* Hide TOC on mobile */
+  .nextra-toc {
+    display: none !important;
+  }
+
+  /* Full width content on mobile */
+  .nextra-content {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  /* Tables scroll horizontally */
+  .nextra-content table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  /* Single column vault cards on tablet */
+  .vault-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .nextra-content h1 {
+    font-size: 1rem !important;
+  }
+
+  .nextra-content h2 {
+    font-size: 0.8125rem !important;
+  }
+
+  .nextra-content {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+}
