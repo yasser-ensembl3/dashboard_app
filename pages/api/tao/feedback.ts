@@ -23,21 +23,9 @@ export default async function handler(
     threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3)
     const threeMonthsAgoISO = threeMonthsAgo.toISOString()
 
-    // If no database ID configured, return fallback
+    // If no database ID configured, return error
     if (!TAO_FEEDBACK_DB) {
-      const fallbackReviews: TaoReview[] = [
-        { id: '1', title: 'Great book', content: '', userName: 'John D.' },
-        { id: '2', title: 'Toute une référence', content: '', userName: 'Marie L.' },
-        { id: '3', title: 'Tao - great insights', content: '', userName: 'Alex M.' },
-        { id: '4', title: 'Truly Inspiring Book', content: '', userName: 'Sarah K.' },
-        { id: '5', title: 'Great gift for startup founders', content: '', userName: 'David R.' },
-      ]
-
-      return res.status(200).json({
-        reviews: fallbackReviews.slice(0, maxResults),
-        count: fallbackReviews.length,
-        source: 'fallback'
-      })
+      return res.status(503).json({ error: 'NOTION_TAO_FEEDBACK_DB not configured' })
     }
 
     const queryParams: any = {

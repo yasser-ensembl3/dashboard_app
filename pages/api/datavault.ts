@@ -11,20 +11,9 @@ export default async function handler(
   }
 
   try {
-    // If no database ID configured, return fallback
+    // If no database ID configured, return error
     if (!DATABASES.DATAVAULT) {
-      const fallbackData: DataVaultData = {
-        metrics: {
-          totalItems: 0
-        },
-        status: 'empty',
-        items: []
-      }
-
-      return res.status(200).json({
-        ...fallbackData,
-        source: 'fallback'
-      })
+      return res.status(503).json({ error: 'NOTION_DATAVAULT_DB not configured' })
     }
 
     // Query Notion database
@@ -64,19 +53,6 @@ export default async function handler(
   } catch (error) {
     console.error('Error fetching DataVault data:', error)
 
-    // Return fallback on error
-    const fallbackData: DataVaultData = {
-      metrics: {
-        totalItems: 0
-      },
-      status: 'empty',
-      items: []
-    }
-
-    return res.status(200).json({
-      ...fallbackData,
-      source: 'fallback',
-      error: 'Failed to fetch from Notion'
-    })
+    return res.status(500).json({ error: 'Failed to fetch DataVault data' })
   }
 }

@@ -16,27 +16,9 @@ export default async function handler(
   try {
     const { status } = req.query
 
-    // If no database ID configured, return fallback
+    // If no database ID configured, return error
     if (!TAO_TASKS_DB) {
-      const fallbackTasks: TaoTask[] = [
-        {
-          id: '1',
-          title: 'Marketing plan + video Tao FR',
-          status: 'To Do',
-          priority: 'High',
-          due: '2025-12-14'
-        }
-      ]
-
-      const filtered = status && status !== 'all'
-        ? fallbackTasks.filter(t => t.status === status)
-        : fallbackTasks
-
-      return res.status(200).json({
-        tasks: filtered,
-        count: filtered.length,
-        source: 'fallback'
-      })
+      return res.status(503).json({ error: 'NOTION_TAO_TASKS_DB not configured' })
     }
 
     // Fetch all tasks (filter in JavaScript since Status is rich_text, not select)

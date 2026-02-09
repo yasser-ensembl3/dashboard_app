@@ -64,10 +64,10 @@ export default async function handler(
     // --- Tao Status ---
     let unfulfilledCount = 0
     let totalRevenue = 0
-    let amazonSales = 118
-    let amazonComReviews = 53
-    let amazonCaReviews = 44
-    let subscribers = 5288
+    let amazonSales = 0
+    let amazonComReviews = 0
+    let amazonCaReviews = 0
+    let subscribers = 0
 
     if (taoOrdersRes.status === 'fulfilled' && taoOrdersRes.value) {
       taoOrdersRes.value.results.forEach((page: any) => {
@@ -107,7 +107,7 @@ export default async function handler(
     }
 
     // --- ContentVault ---
-    let contentVaultMetrics = { totalItems: 19, toRead: 18, inbox: 1 }
+    let contentVaultMetrics = { totalItems: 0, toRead: 0, inbox: 0 }
     if (contentVaultRes.status === 'fulfilled' && contentVaultRes.value) {
       const items = contentVaultRes.value.results.map((page: any) => ({
         status: getSelect(page.properties.Status) || 'Unknown'

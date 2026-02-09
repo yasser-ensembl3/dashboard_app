@@ -35,10 +35,10 @@ export default async function handler(
   try {
     let unfulfilledCount = 0
     let totalRevenue = 0
-    let amazonSales = 118
-    let amazonComReviews = 53
-    let amazonCaReviews = 44
-    let subscribers = 5288
+    let amazonSales = 0
+    let amazonComReviews = 0
+    let amazonCaReviews = 0
+    let subscribers = 0
 
     // Query orders for unfulfilled count and revenue
     if (TAO_ORDERS_DB) {
@@ -100,22 +100,6 @@ export default async function handler(
   } catch (error) {
     console.error('Error fetching status:', error)
 
-    // Return fallback on error
-    const fallbackStatus: TaoStatus = {
-      metrics: {
-        unfulfilled: 0,
-        amazonSales: 118,
-        amazonReviews: 97,
-        shopifySales: '$292'
-      },
-      goals: {
-        amazonSales: 118,
-        amazonComReviews: 53,
-        amazonCaReviews: 44,
-        subscribers: 5288
-      }
-    }
-
-    return res.status(200).json(fallbackStatus)
+    return res.status(500).json({ error: 'Failed to fetch status' })
   }
 }

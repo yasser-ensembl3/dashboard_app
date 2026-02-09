@@ -11,31 +11,9 @@ export default async function handler(
   }
 
   try {
-    // If no database ID configured, return fallback
+    // If no database ID configured, return error
     if (!DATABASES.CONTENTVAULT) {
-      const fallbackData: ContentVaultData = {
-        metrics: {
-          totalItems: 19,
-          toRead: 18,
-          inbox: 1
-        },
-        bySource: [
-          { source: 'Apple Podcasts', count: 7 },
-          { source: 'Blog', count: 6 },
-          { source: 'YouTube', count: 5 },
-          { source: 'ArXiv', count: 1 }
-        ],
-        byType: [
-          { type: 'Audio Summary', count: 18 },
-          { type: 'Paper', count: 1 }
-        ],
-        items: []
-      }
-
-      return res.status(200).json({
-        ...fallbackData,
-        source: 'fallback'
-      })
+      return res.status(503).json({ error: 'NOTION_CONTENTVAULT_DB not configured' })
     }
 
     // Query Notion database
@@ -100,30 +78,6 @@ export default async function handler(
   } catch (error) {
     console.error('Error fetching ContentVault data:', error)
 
-    // Return fallback on error
-    const fallbackData: ContentVaultData = {
-      metrics: {
-        totalItems: 19,
-        toRead: 18,
-        inbox: 1
-      },
-      bySource: [
-        { source: 'Apple Podcasts', count: 7 },
-        { source: 'Blog', count: 6 },
-        { source: 'YouTube', count: 5 },
-        { source: 'ArXiv', count: 1 }
-      ],
-      byType: [
-        { type: 'Audio Summary', count: 18 },
-        { type: 'Paper', count: 1 }
-      ],
-      items: []
-    }
-
-    return res.status(200).json({
-      ...fallbackData,
-      source: 'fallback',
-      error: 'Failed to fetch from Notion'
-    })
+    return res.status(500).json({ error: 'Failed to fetch ContentVault data' })
   }
 }

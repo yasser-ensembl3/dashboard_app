@@ -17,20 +17,9 @@ export default async function handler(
     const { filter } = req.query
     const showUnfulfilledOnly = filter === 'unfulfilled'
 
-    // If no database ID configured, return empty
+    // If no database ID configured, return error
     if (!TAO_ORDERS_DB) {
-      // Return static fallback data
-      const fallbackOrders: TaoOrder[] = [
-        { id: 'TAO1056', name: 'David Lethbridge', total: '$10.46', date: 'Jan 7 2026', payment: 'Paid', fulfillment: 'Unfulfilled' },
-        { id: 'TAO1053', name: 'Victor Daga', total: '$10.49', date: 'Oct 2 2025', payment: 'Paid', fulfillment: 'Unfulfilled' },
-        { id: 'TAO1047', name: '建名 陣', total: '$10', date: 'Jun 24 2025', payment: 'Paid', fulfillment: 'Unfulfilled' },
-        { id: 'TAO1048', name: 'Dragos Craciun', total: '$10.35', date: 'Jun 25 2025', payment: 'Paid', fulfillment: 'Unfulfilled' },
-      ]
-      return res.status(200).json({
-        orders: showUnfulfilledOnly ? fallbackOrders : fallbackOrders,
-        count: fallbackOrders.length,
-        source: 'fallback'
-      })
+      return res.status(503).json({ error: 'NOTION_TAO_ORDERS_DB not configured' })
     }
 
     // Query Notion database
