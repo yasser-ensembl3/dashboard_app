@@ -13,7 +13,7 @@ const config: DocsThemeConfig = {
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta property="og:title" content="MetaVault" />
-      <meta property="og:description" content="Hub for all MiniVault projects" />
+      <meta property="og:description" content="Hub for all MetaVault projects" />
     </>
   ),
   useNextSeoProps() {
