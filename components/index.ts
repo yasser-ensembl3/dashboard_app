@@ -33,9 +33,9 @@ export {
 
 export {
   ActionRequiredBanner,
-  VaultCardsGrid,
-  TaoQuickStats,
-  DashboardPendingTasks,
-  DashboardRecentReviews,
-  DashboardLastUpdated
+  WeeklyWorkflow,
+  MediaAndResearch,
+  GoalsAndMetrics,
+  ActionsToDo,
+  DigestFeed
 } from './DashboardData'

@@ -33,7 +33,8 @@ export default async function handler(
         title: getTitle(props.Title) || getTitle(props.Name) || 'Untitled',
         category: getSelect(props.Category) || getSelect(props.Type) || 'Unknown',
         status: getSelect(props.Status) || 'Unknown',
-        url: getUrl(props.URL) || undefined
+        url: getUrl(props.URL) || undefined,
+        lastEdited: page.last_edited_time
       }
     })
 

@@ -34,7 +34,8 @@ export default async function handler(
         source: getSelect(props.Source) || 'Unknown',
         type: getSelect(props.Type) || 'Unknown',
         status: getSelect(props.Status) || 'Unknown',
-        url: getUrl(props.URL) || undefined
+        url: getUrl(props.URL) || undefined,
+        lastEdited: page.last_edited_time
       }
     })
 

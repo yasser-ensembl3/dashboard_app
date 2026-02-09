@@ -46,6 +46,7 @@ export interface ContentItem {
   type: string
   status: string
   url?: string
+  lastEdited?: string
 }
 
 export interface ContentVaultData {
@@ -66,6 +67,7 @@ export interface DataItem {
   category: string
   status: string
   url?: string
+  lastEdited?: string
 }
 
 export interface DataVaultData {
