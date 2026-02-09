@@ -64,8 +64,9 @@ export interface ContentVaultData {
 export interface DataItem {
   id: string
   title: string
-  category: string
-  status: string
+  authors: string
+  subject: string
+  submission?: string
   url?: string
   lastEdited?: string
 }

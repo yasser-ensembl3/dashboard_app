@@ -11,8 +11,9 @@ interface DataVaultResponse {
   items: Array<{
     id: string
     title: string
-    category: string
-    status: string
+    authors: string
+    subject: string
+    submission?: string
     url?: string
   }>
 }
@@ -36,7 +37,7 @@ export function DataVaultStatus() {
 
   return (
     <div style={{ background: '#1f2937', padding: '0.75rem', borderRadius: '6px', textAlign: 'center', margin: '0.75rem 0' }}>
-      <div style={{ fontSize: '0.875rem', fontWeight: 'bold', color: 'white' }}>{data.metrics.totalItems} Research Items</div>
+      <div style={{ fontSize: '0.875rem', fontWeight: 'bold', color: 'white' }}>Saved Articles</div>
       <div style={{ color: '#9ca3af', marginTop: '0.25rem', fontSize: '0.75rem' }}>Database active</div>
     </div>
   )
@@ -52,14 +53,18 @@ export function DataVaultItems() {
 
   return (
     <div style={{ marginTop: '0.75rem' }}>
-      <h3 style={{ color: 'white', marginBottom: '0.5rem', fontSize: '0.875rem' }}>Research Items</h3>
+      <h3 style={{ color: 'white', marginBottom: '0.75rem', fontSize: '1.25rem', fontWeight: '600' }}>Saved Articles</h3>
       {data.items.map(item => (
-        <div key={item.id} style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', padding: '0.5rem', background: '#1f2937', borderRadius: '6px', marginBottom: '0.25rem', fontSize: '0.75rem', gap: '0.25rem' }}>
-          <div style={{ flex: '1 1 auto', minWidth: '0' }}>
-            <div style={{ color: 'white', fontWeight: '500', wordBreak: 'break-word' }}>{item.title}</div>
-            <div style={{ color: '#9ca3af', fontSize: '0.625rem' }}>{item.category}</div>
+        <div key={item.id} style={{ padding: '0.625rem', background: '#1f2937', borderRadius: '6px', marginBottom: '0.375rem', fontSize: '0.75rem' }}>
+          <div style={{ color: 'white', fontWeight: '500', wordBreak: 'break-word' }}>{item.title}</div>
+          <div style={{ color: '#9ca3af', fontSize: '0.625rem', marginTop: '0.25rem' }}>
+            {item.authors && <span>{item.authors}</span>}
+            {item.authors && item.subject && <span> · </span>}
+            {item.subject && <span>{item.subject}</span>}
           </div>
-          <span style={{ padding: '0.125rem 0.5rem', background: '#4b5563', color: 'white', borderRadius: '999px', fontSize: '0.625rem', flexShrink: 0 }}>{item.status}</span>
+          {item.submission && (
+            <div style={{ color: '#6b7280', fontSize: '0.625rem', marginTop: '0.125rem' }}>{new Date(item.submission).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
+          )}
         </div>
       ))}
     </div>

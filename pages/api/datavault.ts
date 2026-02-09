@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { queryDatabase, DATABASES, getTitle, getSelect, getUrl } from '../../lib/notion'
+import { queryDatabase, DATABASES, getTitle, getRichText, getDate, getUrl } from '../../lib/notion'
 import type { DataVaultData, DataItem } from '../../lib/types'
 
 export default async function handler(
@@ -30,10 +30,11 @@ export default async function handler(
       const props = page.properties
       return {
         id: page.id,
-        title: getTitle(props.Title) || getTitle(props.Name) || 'Untitled',
-        category: getSelect(props.Category) || getSelect(props.Type) || 'Unknown',
-        status: getSelect(props.Status) || 'Unknown',
-        url: getUrl(props.URL) || undefined,
+        title: getTitle(props.Title) || 'Untitled',
+        authors: getRichText(props.Authors) || '',
+        subject: getRichText(props.Subject) || '',
+        submission: getDate(props.Submission) || undefined,
+        url: getUrl(props['pdf Link']) || undefined,
         lastEdited: page.last_edited_time
       }
     })
