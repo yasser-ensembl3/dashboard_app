@@ -1,4 +1,26 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { queryDatabase, DATABASES, getTitle, getSelect, getUrl } from '../../lib/notion'
+
+const TAO_ORDERS_DB = process.env.NOTION_TAO_ORDERS_DB || ''
+const TAO_GOALS_DB = process.env.NOTION_TAO_GOALS_DB || ''
+
+// Helper to get the most recent value for a metric
+function getLatestMetric(goals: any[], metricName: string): number {
+  const matches = goals.filter(g => {
+    const name = g.properties['Metric Name']?.title?.[0]?.plain_text || ''
+    return name.toLowerCase().includes(metricName.toLowerCase())
+  })
+
+  if (matches.length === 0) return 0
+
+  matches.sort((a, b) => {
+    const dateA = a.properties['Last Updated']?.date?.start || ''
+    const dateB = b.properties['Last Updated']?.date?.start || ''
+    return dateB.localeCompare(dateA)
+  })
+
+  return matches[0].properties.Number?.number || 0
+}
 
 // Static data for vaults that don't have Notion integration
 const staticVaults = {
@@ -31,72 +53,90 @@ export default async function handler(
   }
 
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ||
-      (req.headers.host ? `http://${req.headers.host}` : 'http://localhost:3000')
-
-    // Fetch data from all API endpoints in parallel
-    const [taoStatusRes, contentVaultRes, dataVaultRes] = await Promise.allSettled([
-      fetch(`${baseUrl}/api/tao/status`),
-      fetch(`${baseUrl}/api/contentvault`),
-      fetch(`${baseUrl}/api/datavault`)
+    // Fetch all Notion data directly in parallel (no self-fetch)
+    const [taoOrdersRes, taoGoalsRes, contentVaultRes, dataVaultRes] = await Promise.allSettled([
+      TAO_ORDERS_DB ? queryDatabase({ database_id: TAO_ORDERS_DB, page_size: 100 }) : Promise.resolve(null),
+      TAO_GOALS_DB ? queryDatabase({ database_id: TAO_GOALS_DB, page_size: 100 }) : Promise.resolve(null),
+      DATABASES.CONTENTVAULT ? queryDatabase({ database_id: DATABASES.CONTENTVAULT, page_size: 100 }) : Promise.resolve(null),
+      DATABASES.DATAVAULT ? queryDatabase({ database_id: DATABASES.DATAVAULT, page_size: 100 }) : Promise.resolve(null),
     ])
 
-    // Parse responses with fallbacks
-    let taoStatus = {
+    // --- Tao Status ---
+    let unfulfilledCount = 0
+    let totalRevenue = 0
+    let amazonSales = 118
+    let amazonComReviews = 53
+    let amazonCaReviews = 44
+    let subscribers = 5288
+
+    if (taoOrdersRes.status === 'fulfilled' && taoOrdersRes.value) {
+      taoOrdersRes.value.results.forEach((page: any) => {
+        const props = page.properties
+        const fulfillment = props.Fulfillment?.select?.name || ''
+        const total = props['Total $']?.number || 0
+        if (fulfillment === 'Unfulfilled') unfulfilledCount++
+        totalRevenue += total
+      })
+    }
+
+    if (taoGoalsRes.status === 'fulfilled' && taoGoalsRes.value) {
+      const goals = taoGoalsRes.value.results
+      const latestSales = getLatestMetric(goals, 'number of sales')
+      const latestComReviews = getLatestMetric(goals, 'amazoncom reviews')
+      const latestCaReviews = getLatestMetric(goals, 'amazonca reviews')
+      const latestSubscribers = getLatestMetric(goals, 'number of subscribers')
+      if (latestSales > 0) amazonSales = latestSales
+      if (latestComReviews > 0) amazonComReviews = latestComReviews
+      if (latestCaReviews > 0) amazonCaReviews = latestCaReviews
+      if (latestSubscribers > 0) subscribers = latestSubscribers
+    }
+
+    const taoStatus = {
       metrics: {
-        unfulfilled: 4,
-        amazonSales: 118,
-        amazonReviews: 97,
-        shopifySales: '$292'
+        unfulfilled: unfulfilledCount,
+        amazonSales,
+        amazonReviews: amazonComReviews + amazonCaReviews,
+        shopifySales: `$${totalRevenue.toFixed(0)}`
       },
       goals: {
-        amazonSales: 118,
-        amazonComReviews: 53,
-        amazonCaReviews: 44,
-        subscribers: 5288
+        amazonSales,
+        amazonComReviews,
+        amazonCaReviews,
+        subscribers
       }
     }
 
-    let contentVault = {
-      metrics: {
-        totalItems: 19,
-        toRead: 18,
-        inbox: 1
+    // --- ContentVault ---
+    let contentVaultMetrics = { totalItems: 19, toRead: 18, inbox: 1 }
+    if (contentVaultRes.status === 'fulfilled' && contentVaultRes.value) {
+      const items = contentVaultRes.value.results.map((page: any) => ({
+        status: getSelect(page.properties.Status) || 'Unknown'
+      }))
+      contentVaultMetrics = {
+        totalItems: items.length,
+        toRead: items.filter((i: any) => i.status === 'To Read').length,
+        inbox: items.filter((i: any) => i.status === 'Inbox').length
       }
     }
 
-    let dataVault = {
-      metrics: {
-        totalItems: 0
-      }
-    }
-
-    if (taoStatusRes.status === 'fulfilled' && taoStatusRes.value.ok) {
-      taoStatus = await taoStatusRes.value.json()
-    }
-
-    if (contentVaultRes.status === 'fulfilled' && contentVaultRes.value.ok) {
-      const cvData = await contentVaultRes.value.json()
-      contentVault = { metrics: cvData.metrics }
-    }
-
-    if (dataVaultRes.status === 'fulfilled' && dataVaultRes.value.ok) {
-      const dvData = await dataVaultRes.value.json()
-      dataVault = { metrics: dvData.metrics }
+    // --- DataVault ---
+    let dataVaultMetrics = { totalItems: 0 }
+    if (dataVaultRes.status === 'fulfilled' && dataVaultRes.value) {
+      dataVaultMetrics = { totalItems: dataVaultRes.value.results.length }
     }
 
     // Build the vaults object
     const vaults = {
       datavault: {
         ...staticVaults.datavault,
-        metrics: dataVault.metrics
+        metrics: dataVaultMetrics
       },
       contentvault: {
         name: 'ContentVault',
         url: 'https://media-minivault.vercel.app/vault',
         description: 'Content consumption tracker - podcasts, articles, videos.',
         icon: '',
-        metrics: contentVault.metrics
+        metrics: contentVaultMetrics
       },
       stockvault: staticVaults.stockvault,
       'tao-promotion': {
