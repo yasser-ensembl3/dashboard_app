@@ -1,7 +1,7 @@
 {
-  "index": "MetaVault",
-  "datavault": "DataVault",
-  "contentvault": "ContentVault",
-  "stockvault": "StockVault",
+  "index": "Overview",
+  "datavault": "Research",
+  "contentvault": "Media",
+  "stockvault": "Stoic",
   "tao-promotion": "Tao"
 }
