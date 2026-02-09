@@ -1,7 +1,7 @@
 {
-  "name": "minivault-dashboard",
+  "name": "metavault",
   "version": "1.0.0",
-  "description": "MiniVault Dashboard - Hub for all vault projects",
+  "description": "MetaVault - Hub for all vault projects",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
