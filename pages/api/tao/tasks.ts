@@ -14,6 +14,9 @@ export default async function handler(
   }
 
   try {
+    // Cache: 5 min CDN, serve stale up to 10 min while revalidating
+    res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600')
+
     const { status } = req.query
 
     // If no database ID configured, return error

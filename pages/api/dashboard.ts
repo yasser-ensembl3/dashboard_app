@@ -53,6 +53,9 @@ export default async function handler(
   }
 
   try {
+    // Cache: 5 min CDN, serve stale up to 10 min while revalidating
+    res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600')
+
     // Fetch all Notion data directly in parallel (no self-fetch)
     const [taoOrdersRes, taoGoalsRes, contentVaultRes, dataVaultRes] = await Promise.allSettled([
       TAO_ORDERS_DB ? queryDatabase({ database_id: TAO_ORDERS_DB, page_size: 100 }) : Promise.resolve(null),

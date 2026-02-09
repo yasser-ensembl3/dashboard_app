@@ -14,6 +14,9 @@ export default async function handler(
   }
 
   try {
+    // Cache: 5 min CDN, serve stale up to 10 min while revalidating
+    res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600')
+
     const { limit, recent } = req.query
     const maxResults = limit ? parseInt(limit as string) : 10
     const filterRecent = recent === 'true' || recent === '1'
