@@ -55,6 +55,13 @@ export function getUrl(property: any): string {
   return property?.url || ''
 }
 
+// Helper to extract URL from files property
+export function getFileUrl(property: any): string {
+  if (!property?.files || property.files.length === 0) return ''
+  const file = property.files[0]
+  return file?.external?.url || file?.file?.url || file?.name || ''
+}
+
 // Helper to extract Person (people) field
 export function getPerson(property: any): string {
   if (!property?.people || property.people.length === 0) return ''

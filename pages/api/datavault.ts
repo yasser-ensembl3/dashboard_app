@@ -33,6 +33,7 @@ export default async function handler(
         title: getTitle(props.Title) || 'Untitled',
         authors: getRichText(props.Authors) || '',
         subject: getRichText(props.Subject) || '',
+        description: getRichText(props.Description) || '',
         submission: getDate(props.Submission) || undefined,
         url: getUrl(props['pdf Link']) || undefined,
         lastEdited: page.last_edited_time

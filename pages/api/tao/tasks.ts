@@ -61,7 +61,8 @@ export default async function handler(
         title: getTitle(props.Name) || 'Untitled',
         status: statusValue,
         priority: priorityValue,
-        due: getDate(props['Due Date']) || ''
+        due: getDate(props['Due Date']) || '',
+        url: `https://notion.so/${page.id.replace(/-/g, '')}`
       }
     })
 

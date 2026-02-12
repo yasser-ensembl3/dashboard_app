@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { queryDatabase, DATABASES, getTitle, getSelect, getUrl } from '../../lib/notion'
+import { queryDatabase, DATABASES, getTitle, getSelect, getUrl, getFileUrl, getDate, getRichText } from '../../lib/notion'
 import type { ContentVaultData, ContentItem } from '../../lib/types'
 
 export default async function handler(
@@ -25,16 +25,21 @@ export default async function handler(
       page_size: 100
     })
 
-    // Process items
+    // Process items — columns: Link (title), type, Status, Date, Audio Link, Audio summary, Text summary, Transcript/pdf
     const items: ContentItem[] = response.results.map((page: any) => {
       const props = page.properties
+      // Primary URL: Audio summary (files) > Audio Link (url) > Text summary (files)
+      const url = getFileUrl(props['Audio summary'])
+        || getUrl(props['Audio Link'])
+        || getFileUrl(props['Text summary'])
+        || undefined
       return {
         id: page.id,
-        title: getTitle(props.Title) || getTitle(props.Name) || 'Untitled',
-        source: getSelect(props.Source) || 'Unknown',
-        type: getSelect(props.Type) || 'Unknown',
+        title: getTitle(props.Link) || getTitle(props.Title) || getTitle(props.Name) || 'Untitled',
+        source: getSelect(props.type) || 'Unknown',
+        type: getSelect(props.type) || 'Unknown',
         status: getSelect(props.Status) || 'Unknown',
-        url: getUrl(props.URL) || undefined,
+        url,
         lastEdited: page.last_edited_time
       }
     })

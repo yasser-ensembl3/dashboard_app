@@ -55,7 +55,8 @@ export default async function handler(
         total: `$${totalValue}`,
         date: formatDate(getDate(props.Date)),
         payment: getSelect(props.Payment) || 'Unknown',
-        fulfillment: getSelect(props.Fulfillment) || 'Unknown'
+        fulfillment: getSelect(props.Fulfillment) || 'Unknown',
+        url: `https://notion.so/${page.id.replace(/-/g, '')}`
       }
     })
 

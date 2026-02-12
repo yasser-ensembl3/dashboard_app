@@ -19,6 +19,7 @@ export {
   ContentVaultMetrics,
   ContentVaultBySource,
   ContentVaultByType,
+  ContentVaultItems,
   ContentVaultHeader,
   ContentVaultLastUpdated
 } from './ContentVaultData'
