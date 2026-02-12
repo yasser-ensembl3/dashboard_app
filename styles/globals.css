@@ -74,6 +74,17 @@
 /* Reduce overall content max-width for tighter feel */
 .nextra-content {
   max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Ensure all component containers respect parent width */
+.goals-grid,
+.actions-grid,
+.workflow-grid,
+.digest-timeline,
+.vault-cards-grid {
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* List spacing */
@@ -102,6 +113,12 @@
 /* ==================== */
 
 @media (max-width: 768px) {
+  /* Prevent horizontal scroll on entire page */
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+
   /* Smaller headings on mobile */
   .nextra-content h1 {
     font-size: 1.125rem !important;
@@ -120,10 +137,19 @@
     display: none !important;
   }
 
-  /* Full width content on mobile */
+  /* Full width content on mobile — prevent overflow */
   .nextra-content {
     padding-left: 0.75rem !important;
     padding-right: 0.75rem !important;
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+
+  /* All elements: constrain to parent (div + a tags for card links) */
+  .nextra-content div,
+  .nextra-content a {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   /* Tables scroll horizontally */
@@ -203,6 +229,12 @@
   /* Media insights: reduce sub-text padding */
   .media-insight-sub {
     padding-left: 0 !important;
+  }
+
+  /* Digest: allow text wrapping on mobile */
+  .digest-text {
+    white-space: normal !important;
+    text-overflow: unset !important;
   }
 
   /* Digest: tighter timeline */

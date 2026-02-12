@@ -156,6 +156,9 @@ function MediaInsightsView({ data }: { data: MediaInsightsResponse }) {
               textDecoration: 'none',
               cursor: item.url ? 'pointer' : 'default',
               transition: 'background 0.15s',
+              overflow: 'hidden',
+              width: '100%',
+              boxSizing: 'border-box' as const,
             }}
             onMouseEnter={item.url ? (e: any) => { e.currentTarget.style.background = '#283344' } : undefined}
             onMouseLeave={item.url ? (e: any) => { e.currentTarget.style.background = '#1f2937' } : undefined}
@@ -259,7 +262,7 @@ function MediaFallbackView() {
         const Tag = item.url ? 'a' : 'div'
         const linkProps = item.url ? { href: item.url, target: '_blank', rel: 'noopener noreferrer' } : {}
         return (
-        <Tag key={item.id} {...linkProps} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem', background: '#1f2937', borderRadius: '6px', fontSize: '0.75rem', textDecoration: 'none', cursor: item.url ? 'pointer' : 'default', transition: 'background 0.15s' }}
+        <Tag key={item.id} {...linkProps} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem', background: '#1f2937', borderRadius: '6px', fontSize: '0.75rem', textDecoration: 'none', cursor: item.url ? 'pointer' : 'default', transition: 'background 0.15s', overflow: 'hidden', width: '100%', boxSizing: 'border-box' as const }}
           onMouseEnter={item.url ? (e: any) => { e.currentTarget.style.background = '#283344' } : undefined}
           onMouseLeave={item.url ? (e: any) => { e.currentTarget.style.background = '#1f2937' } : undefined}
         >
@@ -427,6 +430,9 @@ export function ActionsToDo() {
                 cursor: 'pointer',
                 transition: 'background 0.15s',
                 borderLeft: `3px solid ${STATUS_CONFIG.find(s => s.key === expanded)?.color || '#6b7280'}`,
+                overflow: 'hidden',
+                width: '100%',
+                boxSizing: 'border-box' as const,
               }}
               onMouseEnter={(e: any) => { e.currentTarget.style.background = '#283344' }}
               onMouseLeave={(e: any) => { e.currentTarget.style.background = '#1f2937' }}
@@ -498,9 +504,9 @@ export function DigestFeed() {
   }
 
   return (
-    <div style={{ marginTop: '0.75rem', position: 'relative' }}>
+    <div style={{ marginTop: '0.75rem', position: 'relative', overflow: 'hidden' }}>
       <div className="digest-timeline-line" style={{ position: 'absolute', top: '0', bottom: '0', width: '1.5px', background: '#374151' }} />
-      <div className="digest-timeline" style={{ display: 'grid', gap: '0.5rem' }}>
+      <div className="digest-timeline" style={{ display: 'grid', gap: '0.5rem', overflow: 'hidden' }}>
         {data.items.map(item => {
           const dotColor = item.color || '#4b5563'
           const badgeColor = SOURCE_BADGE_COLORS[item.icon] || '#374151'
@@ -518,6 +524,7 @@ export function DigestFeed() {
                 fontSize: '0.75rem',
                 cursor: hasDetails ? 'pointer' : 'default',
                 transition: 'background 0.15s',
+                overflow: 'hidden',
               }}
               onMouseEnter={hasDetails ? (e: any) => { if (!isExpanded) e.currentTarget.style.background = '#283344' } : undefined}
               onMouseLeave={hasDetails ? (e: any) => { if (!isExpanded) e.currentTarget.style.background = '#1f2937' } : undefined}
@@ -545,7 +552,7 @@ export function DigestFeed() {
                   fontWeight: '600',
                   flexShrink: 0,
                 }}>{item.icon}</span>
-                <span style={{
+                <span className="digest-text" style={{
                   color: 'white',
                   flex: 1,
                   minWidth: 0,
