@@ -153,3 +153,96 @@
     padding-right: 0.5rem !important;
   }
 }
+
+/* ==================== */
+/* Component Mobile     */
+/* ==================== */
+
+/* Media Insights: summary/reason padding */
+.media-insight-sub {
+  padding-left: 2.25rem;
+}
+
+/* Digest: timeline layout */
+.digest-timeline {
+  padding-left: 1.5rem;
+}
+
+.digest-timeline-line {
+  left: 8px;
+}
+
+.digest-dot {
+  left: -1.25rem;
+}
+
+/* Digest: expanded details */
+.digest-details {
+  margin-left: 2.5rem;
+}
+
+/* Goals grid */
+.goals-grid {
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  gap: 0.5rem;
+}
+
+/* Actions grid */
+.actions-grid {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+/* Workflow grid */
+.workflow-grid {
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.375rem;
+}
+
+@media (max-width: 768px) {
+  /* Media insights: reduce sub-text padding */
+  .media-insight-sub {
+    padding-left: 0 !important;
+  }
+
+  /* Digest: tighter timeline */
+  .digest-timeline {
+    padding-left: 1rem !important;
+  }
+
+  .digest-timeline-line {
+    left: 4px !important;
+  }
+
+  .digest-dot {
+    left: -0.875rem !important;
+    width: 6px !important;
+    height: 6px !important;
+  }
+
+  .digest-details {
+    margin-left: 0 !important;
+  }
+
+  /* Goals: 2x2 grid on mobile */
+  .goals-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Workflow: smaller padding */
+  .workflow-grid {
+    gap: 0.25rem !important;
+  }
+}
+
+@media (max-width: 380px) {
+  /* Very small screens: stack actions */
+  .actions-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.25rem !important;
+  }
+
+  .digest-timeline {
+    padding-left: 0.75rem !important;
+  }
+}

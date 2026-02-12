@@ -89,7 +89,7 @@ export function WeeklyWorkflow() {
 
   return (
     <div style={{ border: '1.5px dashed #4b5563', borderRadius: '8px', padding: '1rem', marginTop: '0.75rem', position: 'relative' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '0.375rem' }}>
+      <div className="workflow-grid" style={{ display: 'grid' }}>
         {days.map((day, i) => (
           <div
             key={day}
@@ -186,12 +186,12 @@ function MediaInsightsView({ data }: { data: MediaInsightsResponse }) {
                 )}
               </div>
               {item.summary && (
-                <div style={{ color: '#9ca3af', fontSize: '0.6875rem', lineHeight: '1.3', paddingLeft: '2.25rem' }}>
+                <div className="media-insight-sub" style={{ color: '#9ca3af', fontSize: '0.6875rem', lineHeight: '1.3' }}>
                   {item.summary}
                 </div>
               )}
               {item.relevanceReason && (
-                <div style={{ color: '#6b7280', fontSize: '0.625rem', fontStyle: 'italic', paddingLeft: '2.25rem' }}>
+                <div className="media-insight-sub" style={{ color: '#6b7280', fontSize: '0.625rem', fontStyle: 'italic' }}>
                   {item.relevanceReason}
                 </div>
               )}
@@ -325,7 +325,7 @@ export function GoalsAndMetrics() {
   }
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(70px, 1fr))', gap: '0.5rem', marginTop: '0.75rem' }}>
+    <div className="goals-grid" style={{ display: 'grid', marginTop: '0.75rem' }}>
       {[
         { value: tao.goals.amazonSales, label: 'Amazon Sales' },
         { value: tao.goals.amazonComReviews + tao.goals.amazonCaReviews, label: 'Amazon Reviews' },
@@ -380,7 +380,7 @@ export function ActionsToDo() {
 
   return (
     <div style={{ marginTop: '0.75rem' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem' }}>
+      <div className="actions-grid" style={{ display: 'grid' }}>
         {STATUS_CONFIG.map(({ key, label, color }) => {
           const count = data.counts[key] || 0
           const isExpanded = expanded === key
@@ -499,8 +499,8 @@ export function DigestFeed() {
 
   return (
     <div style={{ marginTop: '0.75rem', position: 'relative' }}>
-      <div style={{ position: 'absolute', left: '8px', top: '0', bottom: '0', width: '1.5px', background: '#374151' }} />
-      <div style={{ display: 'grid', gap: '0.5rem', paddingLeft: '1.5rem' }}>
+      <div className="digest-timeline-line" style={{ position: 'absolute', top: '0', bottom: '0', width: '1.5px', background: '#374151' }} />
+      <div className="digest-timeline" style={{ display: 'grid', gap: '0.5rem' }}>
         {data.items.map(item => {
           const dotColor = item.color || '#4b5563'
           const badgeColor = SOURCE_BADGE_COLORS[item.icon] || '#374151'
@@ -522,7 +522,7 @@ export function DigestFeed() {
               onMouseEnter={hasDetails ? (e: any) => { if (!isExpanded) e.currentTarget.style.background = '#283344' } : undefined}
               onMouseLeave={hasDetails ? (e: any) => { if (!isExpanded) e.currentTarget.style.background = '#1f2937' } : undefined}
             >
-              <div style={{ position: 'absolute', left: '-1.25rem', top: '0.75rem', width: '8px', height: '8px', borderRadius: '50%', background: dotColor, border: `1.5px solid ${dotColor}` }} />
+              <div className="digest-dot" style={{ position: 'absolute', top: '0.75rem', width: '8px', height: '8px', borderRadius: '50%', background: dotColor, border: `1.5px solid ${dotColor}` }} />
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem' }}>
                 {hasDetails && (
                   <span style={{
@@ -584,9 +584,8 @@ export function DigestFeed() {
                 </span>
               </div>
               {isExpanded && item.details && (
-                <div style={{
+                <div className="digest-details" style={{
                   marginTop: '0.5rem',
-                  marginLeft: hasDetails ? '2.5rem' : '1.75rem',
                   padding: '0.5rem 0.625rem',
                   background: 'rgba(0,0,0,0.2)',
                   borderRadius: '6px',
